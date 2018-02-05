@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-auto-increment');
-const uuid = require('./uuid');
+// const uuid = require('./uuid');
+const uuid = require('mongoose-simple-uuid');
 
 const connection = mongoose.createConnection('mongodb://127.0.0.1:27017/zoo');
 autoIncrement.initialize(connection);
 
-const zooSchema = new mongoose.Schema({
+const ZooSchema = new mongoose.Schema({
 	name: String,
 	city: String,
 	state: String,
@@ -13,13 +14,13 @@ const zooSchema = new mongoose.Schema({
 	animal_count: Number
 });
 
-zooSchema.plugin(autoIncrement.plugin, {
+ZooSchema.plugin(autoIncrement.plugin, {
 	model: 'Zoo',
 	field: 'id'
 });
 
-zooSchema.plugin(uuid);
+ZooSchema.plugin(uuid, {format: 'v4', hyphen: false});
 
-const Zoo = mongoose.model('Zoo', zooSchema);
+const Zoo = mongoose.model('Zoo', ZooSchema);
 
 module.exports = Zoo;
