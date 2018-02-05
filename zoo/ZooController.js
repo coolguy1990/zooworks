@@ -16,6 +16,7 @@ router.post('/', (req, res, next) => {
         state_short_code: req.body.state_short_code,
         animal_count: req.body.animal_count
     }, (err, zoo) => {
+        console.log(err);
         if (err) return res.status(500).send(response('problem adding to db'));
 
         return res.status(200).send(response('created zoo', 200, transform(zoo), true));

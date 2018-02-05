@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-auto-increment');
+const uuid = require('./uuid');
 
 const connection = mongoose.createConnection('mongodb://127.0.0.1:27017/zoo');
 autoIncrement.initialize(connection);
@@ -16,6 +17,8 @@ zooSchema.plugin(autoIncrement.plugin, {
 	model: 'Zoo',
 	field: 'id'
 });
+
+zooSchema.plugin(uuid);
 
 const Zoo = mongoose.model('Zoo', zooSchema);
 
