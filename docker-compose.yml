@@ -21,9 +21,33 @@ services:
       - "3001:3001"
     networks:
       - backend
+  animal:
+    build:
+      context: ./animals
+      dockerfile: Dockerfile
+    depends_on:
+      - mongo
+    ports:
+      - "3002:3002"
+    networks:
+      - backend
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - zoo
+      - animal
+    ports: 
+      - "8080:80"
+    networks:
+      - backend
+      - frontend
 
 networks:
   backend:
+    driver: "bridge"
+  frontend:
     driver: "bridge"
 
 volumes:
