@@ -3,7 +3,7 @@ const autoIncrement = require('mongoose-auto-increment');
 // const uuid = require('./uuid');
 const uuid = require('mongoose-simple-uuid');
 
-const connection = mongoose.createConnection('mongodb://127.0.0.1:27017/zoo');
+const connection = mongoose.createConnection('mongodb://mongo:27017/zoo');
 autoIncrement.initialize(connection);
 
 const ZooSchema = new mongoose.Schema({

@@ -66,7 +66,7 @@ router.delete('/:id', (req, res, next) => {
 
 function transform (zoo) {
     return {
-        id: zoo.id,
+        uuid: zoo.uuid,
         name: zoo.name,
         city: zoo.city,
         state: zoo.state,

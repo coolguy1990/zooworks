@@ -11,6 +11,16 @@ services:
       - 27017:27017
     networks:
       - backend
+  zoo:
+    build:
+      context: ./zoo
+      dockerfile: Dockerfile
+    depends_on:
+      - mongo
+    ports:
+      - "3001:3001"
+    networks:
+      - backend
 
 networks:
   backend:
