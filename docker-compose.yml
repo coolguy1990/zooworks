@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+  mongo:
+    build:
+      context: ./mongo
+      dockerfile: Dockerfile
+    volumes:
+      - ./mongo/datadir:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"
+
+volumes:
+  mongo:
+    driver: "local"
